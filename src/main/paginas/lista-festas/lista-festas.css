@@ -1,0 +1,15 @@
+.ListaFestas .festa {
+    text-align: left;
+}
+
+.ListaFestas .data {
+    width: 120px;
+}
+
+.ListaFestas .convidados {
+    width: 120px;
+}
+
+.ListaFestas .acao {
+    width: 125px;
+}

@@ -1,0 +1,54 @@
+.Button {
+    border-radius: 4px;
+    border: 0;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.Button span {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Button-mini {
+    width: 30px;
+}
+
+.Button-normal {
+    width: 150px;
+}
+
+.Button-wide {
+    width: 100%;
+}
+
+.Button-danger {
+    color: #fff;
+    background-color: #dc3545
+}
+
+.Button-warning {
+    color: #343a40;
+    background-color: #ffc107;
+}
+
+.Button-success {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.Button-primary {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.Button-secundary {
+    color: #343a40;
+    background-color: #E0E0E0;
+}
+
+.Button:active {
+    color: #fff;
+    background-color: #263238
+}

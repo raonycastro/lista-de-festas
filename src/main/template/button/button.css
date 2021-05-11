@@ -2,8 +2,8 @@
     border-radius: 4px;
     border: 0;
     height: 30px;
-    margin: 5px;
     cursor: pointer;
+    margin: 5px;
 }
 
 .Button span {
@@ -11,44 +11,53 @@
     justify-content: space-around;
 }
 
-.Button-mini {
+.Button span svg {
+    margin-top: 2px;
+}
+
+.Button.Button-mini {
     width: 30px;
 }
 
-.Button-normal {
+.Button.Button-normal {
     width: 150px;
 }
 
-.Button-wide {
+.Button.Button-wide {
     width: 100%;
 }
 
-.Button-danger {
+.Button.Button-danger {
     color: #fff;
     background-color: #dc3545
 }
 
-.Button-warning {
+.Button.Button-warning {
     color: #343a40;
     background-color: #ffc107;
 }
 
-.Button-success {
+.Button.Button-success {
     color: #fff;
     background-color: #28a745;
 }
 
-.Button-primary {
+.Button.Button-primary {
     color: #fff;
     background-color: #007bff;
 }
 
-.Button-secundary {
+.Button.Button-secundary {
     color: #343a40;
     background-color: #E0E0E0;
 }
 
-.Button:active {
+.Button.Button:active {
     color: #fff;
     background-color: #263238
+}
+
+.Button:disabled {
+    background-color: #aaaaaa;
+    color: #555555;
 }

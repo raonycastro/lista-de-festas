@@ -20,6 +20,7 @@ const Button = (props: Props) => {
         props?.value;
     const button = <button
         className={className}
+        disabled={props.disabled}
         onClick={e => props.action && !props.disabled ? props.action() : null}>{value}</button>;
     if (props.link) {
         return <Link to={props.link}>{button}</Link>

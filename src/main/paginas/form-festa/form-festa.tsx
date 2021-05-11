@@ -6,9 +6,11 @@ import { putFestas, postFestas } from '../../redux/festas-action';
 import Button from '../../template/button/button';
 import Content from '../../template/content/content';
 import Input from '../../template/input/input';
-import { Festa } from '../../util/interfaces';
+import { BreadCrumbInterface, Festa } from '../../util/interfaces';
 import { RouteComponentInterface } from '../../util/interfaces/router-component.interface';
 import If from '../../condicao/if';
+import { RotasTituloEnum } from '../../util/enums/rotas-titulo.enum';
+import { RotasEnum } from '../../util/enums/rotas.enum';
 
 interface MatchParams {
     id: string;
@@ -27,6 +29,9 @@ interface Props extends RouteComponentInterface<MatchParams> {
 class FormFesta extends Component<Props> {
     
     value = this.props.editar ? 'editar' : 'salvar';
+    convidados: string = this.props.visualizar ? RotasTituloEnum.VisualizarConvidados : RotasTituloEnum.EditarConvidados;
+    convidadosLink: string = this.props.visualizar ? RotasEnum.VisualizarConvidados : RotasEnum.EditarConvidados;
+    breadCrumbs = new Array<BreadCrumbInterface>();
     action = () => {
         const { festaForm } = this.props
         if (this.props.editar) {
@@ -36,17 +41,24 @@ class FormFesta extends Component<Props> {
         }
     };
 
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.match) {
             this.props.getFestaForm(Number(this.props.match.params.id));
+            this.convidadosLink = this.convidadosLink.replace(':id', this.props.match.params.id);
         } else {
             this.props.getFestaForm(-1);
         }
+        this.breadCrumbs = [{ nome: RotasTituloEnum.Festas, link: RotasEnum.Festas }]
+    }
+
+    get disabled() {
+        return !this.props.festaForm || !this.props.festaForm.nome || !this.props.festaForm.data;
     }
 
     render() {
         return (
             <Content
+                breadCrumbs={this.breadCrumbs}
                 titulo={this.props.editar ? this.props.visualizar ? "Visualizar Festa" : "Editar Festa" : "Criar Festa"}
                 subtitulo="escolha o nome e a data da festa"
                 componente="FormFesta">
@@ -68,9 +80,12 @@ class FormFesta extends Component<Props> {
                             onChange={(e: any) => this.props.setFestaForm({ ...this.props.festaForm, data: e.target.value })} />
                     </div>
                     <div className="form-buttons">
-                        <Button color="secundary" type="normal" link="/festas" value="cancelar" />
+                        <Button color="secundary" type="normal" link={RotasEnum.Festas} value="cancelar" />
+                        <If show={this.props.editar}>
+                            <Button color="warning" type="normal" link={this.convidadosLink} value={this.convidados} />
+                        </If>
                         <If show={!this.props.visualizar}>
-                            <Button color="primary" type="normal" action={this.action} link="/festas" value={this.value} />
+                            <Button disabled={this.disabled} color="primary" type="normal" action={this.action} link={RotasEnum.Festas} value={this.value} />
                         </If>
                     </div>
                 </form>

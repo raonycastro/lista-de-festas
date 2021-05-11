@@ -4,6 +4,6 @@
 }
 
 .Content .titulo-section {
-    height: calc(100% - 30px);
-    min-height: 400px;
+    height: calc(100% - 51px);
+    min-height: 300px;
 }

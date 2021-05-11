@@ -10,35 +10,46 @@ import Login from './main/paginas/login/login';
 import ListaConvidados from './main/paginas/lista-convidados/lista-convidados';
 import NaoEncontrado from './main/paginas/nao-encontrado/nao-encontrado';
 import FormFesta from './main/paginas/form-festa/form-festa';
+import FormConvidado from './main/paginas/form-convidado/form-convidado';
+import { RotasEnum } from './main/util/enums/rotas.enum';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/festas">
+          <Route path={RotasEnum.Festas}>
             <ListaFestas />
           </Route>
-          <Route path="/adicionar-festa">
+          <Route path={RotasEnum.AdicionarFesta}>
             <FormFesta editar={false} visualizar={false} />
           </Route>
-          <Route path="/editar-festa/:id"
+          <Route path={RotasEnum.EditarFesta}
             render={(props) => <FormFesta {...props} editar={true} visualizar={false} />}>
           </Route>
-          <Route path="/visualizar-festa/:id"
-            render={(props) => <FormFesta {...props} editar={true} visualizar={true}/>}>
-          </Route>
-          <Route path="/:id/convidados">
-            <ListaConvidados />
+          <Route path={RotasEnum.VisualizarFesta}
+            render={(props) => <FormFesta {...props} editar={true} visualizar={true} />}>
           </Route> 
-          <Route path="/login">
+          <Route path={RotasEnum.EditarConvidados}
+            render={(props) => <ListaConvidados {...props} editar={true} />}>
+          </Route> 
+          <Route path={RotasEnum.VisualizarConvidados}
+            render={(props) => <ListaConvidados {...props} editar={false} />}>
+          </Route> 
+          <Route path={RotasEnum.AdicionarConvidado}
+            render={(props) => <FormConvidado {...props} editar={false} />}>
+          </Route> 
+          <Route path={RotasEnum.EditarConvidado}
+            render={(props) => <FormConvidado {...props} editar={true} />}>
+          </Route>
+          <Route path={RotasEnum.Login}>
             <Login />
           </Route> 
-          <Route path="/nao-encontrado">
+          <Route path={RotasEnum.NaoEncontrado}>
             <NaoEncontrado />
           </Route> 
-          <Redirect exact from="/" to="/festas"></Redirect>
-          <Redirect from="*" to="/nao-encontrado"></Redirect>
+          <Redirect exact from="/" to={RotasEnum.Festas}></Redirect>
+          <Redirect from="*" to={RotasEnum.NaoEncontrado}></Redirect>
         </Switch> 
       </Router>
     </div>

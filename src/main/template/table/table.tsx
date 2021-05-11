@@ -23,7 +23,7 @@ function createTd(index: number, data: string[], colunmClass: string[], buttons?
     const tds = data.map((td, i) => {
         return <td key={i} className={colunmClass[i]}>{td}</td>;
     });
-    if (buttons) {
+    if (buttons && buttons.length) {
         tds.push(<td key={tds.length}>{
             buttons.map((b, i) => 
                 <Button
